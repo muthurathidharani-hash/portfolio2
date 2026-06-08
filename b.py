@@ -8,7 +8,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# Mail configuration
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = os.getenv('DEL_EMAIL')
@@ -17,17 +16,12 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 
 mail = Mail(app)
-
-# Hardcoded login password
-PASSWORD = "muthu404"
-
-# ------------------- ROUTES -------------------
-
+LOGIN_PASSWORD = "muthu404"
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
         password = request.form["password"]
-        if password == PASSWORD:
+        if password == LOGIN_PASSWORD:
             return redirect(url_for("homepage"))
         else:
             return "Invalid Password!"
