@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - CareerGPT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #6366f1 50%, #3b82f6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #1e293b;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 560px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #7c3aed;
+            margin-bottom: 8px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #f472b6, #7c3aed);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .step-number.active {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: white;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+        }
+
+        .step-number.completed {
+            background: #10b981;
+            color: white;
+        }
+
+        .step-number.inactive {
+            background: #e2e8f0;
+            color: #94a3b8;
+        }
+
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background: #e2e8f0;
+            border-radius: 1px;
+        }
+
+        .step-line.completed {
+            background: #10b981;
+        }
+
+        .step-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #64748b;
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        .step-label.active {
+            color: #7c3aed;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateX(10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 6px;
+        }
+
+        label .required {
+            color: #ef4444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #7c3aed;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .input-icon-wrapper {
+            position: relative;
+        }
+
+        .input-icon-wrapper i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        .input-icon-wrapper input,
+        .input-icon-wrapper select {
+            padding-left: 44px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .skill-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            color: #7c3aed;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-tag:hover {
+            border-color: #7c3aed;
+            transform: translateY(-1px);
+        }
+
+        .skill-tag.selected {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: white;
+        }
+
+        .experience-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .exp-option {
+            padding: 16px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .exp-option:hover {
+            border-color: #a78bfa;
+            transform: translateY(-2px);
+        }
+
+        .exp-option.selected {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            color: #7c3aed;
+        }
+
+        .exp-option i {
+            font-size: 24px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .exp-option span {
+            font-size: 12px;
+            font-weight: 600;
+            display: block;
+        }
+
+        .career-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .career-card {
+            padding: 20px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+        }
+
+        .career-card:hover {
+            border-color: #a78bfa;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.1);
+        }
+
+        .career-card.selected {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+        }
+
+        .career-card i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .career-card .title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .career-card .desc {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c3aed, #6366f1);
+            color: white;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #e2e8f0;
+            color: #64748b;
+            margin-top: 12px;
+        }
+
+        .btn-outline:hover {
+            border-color: #7c3aed;
+            color: #7c3aed;
+            background: #f5f3ff;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .btn-group .btn {
+            flex: 1;
+        }
+
+        .btn-back {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .btn-back:hover {
+            background: #e2e8f0;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .social-btn:hover {
+            border-color: #7c3aed;
+            background: #f5f3ff;
+        }
+
+        .social-btn i {
+            font-size: 18px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            color: #94a3b8;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #e2e8f0;
+        }
+
+        .terms {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        .terms a {
+            color: #7c3aed;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #34d399);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .success-icon i {
+            color: white;
+            font-size: 36px;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .success-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .success-text {
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .feature-preview {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .preview-item {
+            text-align: center;
+            padding: 16px 8px;
+            background: #f8fafc;
+            border-radius: 12px;
+        }
+
+        .preview-item i {
+            font-size: 20px;
+            color: #7c3aed;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .preview-item span {
+            font-size: 11px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .loading-bar {
+            width: 100%;
+            height: 4px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed, #6366f1);
+            border-radius: 2px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 28px 20px;
+            }
+            
+            .experience-options,
+            .career-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-preview {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card" style="background-color: black;">
+            
+            <!-- Logo -->
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    CareerGPT
+                </div>
+                <div class="subtitle">Create your AI-powered career roadmap</div>
+            </div>
+
+            <!-- Step Indicator -->
+            <div class="step-indicator">
+                <div class="step">
+                    <div>
+                        <div class="step-number active" id="step1-num">1</div>
+                        <div class="step-label active" id="step1-label">Account</div>
+                    </div>
+                </div>
+                <div class="step-line" id="line1"></div>
+                <div class="step">
+                    <div>
+                        <div class="step-number inactive" id="step2-num">2</div>
+                        <div class="step-label" id="step2-label">Profile</div>
+                    </div>
+                </div>
+                <div class="step-line" id="line2"></div>
+                <div class="step">
+                    <div>
+                        <div class="step-number inactive" id="step3-num">3</div>
+                        <div class="step-label" id="step3-label">Goals</div>
+                    </div>
+                </div>
+                <div class="step-line" id="line3"></div>
+                <div class="step">
+                    <div>
+                        <div class="step-number inactive" id="step4-num">4</div>
+                        <div class="step-label" id="step4-label">Ready</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-section active" id="step1">
+                <h2 style="color:white;">Create Your Account</h2>
+                <p class="section-desc">Start your career transformation journey</p>
+
+                <div class="social-login">
+                    <button class="social-btn">
+                        <i class="fab fa-google" style="color:#ea4335;"></i> Google
+                    </button>
+                    <button class="social-btn">
+                        <i class="fab fa-linkedin" style="color:#0a66c2;"></i> LinkedIn
+                    </button>
+                </div>
+
+                <div class="divider">or sign up with email</div>
+
+                <form onsubmit="return nextStep(2)">
+                    <div class="form-group">
+                        <label>Full Name <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="Min 8 characters" required minlength="8">
+                            <i class="fas fa-eye password-toggle" onclick="togglePassword()"></i>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">
+                        Continue <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+
+                <p class="terms">
+                    Already have an account? <a href="#">Log in</a><br>
+                    By signing up, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                </p>
+            </div>
+
+            <!-- STEP 2: Profile Setup -->
+            <div class="form-section" id="step2">
+                <h2>Tell Us About You</h2>
+                <p class="section-desc">Help us understand your background</p>
+
+                <form onsubmit="return nextStep(3)">
+                    <div class="form-group">
+                        <label>Current Role / Background <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-briefcase"></i>
+                            <input type="text" placeholder="e.g., Student, Software Engineer, Marketing" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Experience Level <span class="required">*</span></label>
+                        <div class="experience-options">
+                            <div class="exp-option" onclick="selectExp(this)">
+                                <i class="fas fa-seedling"></i>
+                                <span>Beginner</span>
+                                <span style="font-size:10px; color:#94a3b8; margin-top:2px;">0-1 years</span>
+                            </div>
+                            <div class="exp-option" onclick="selectExp(this)">
+                                <i class="fas fa-user-graduate"></i>
+                                <span>Intermediate</span>
+                                <span style="font-size:10px; color:#94a3b8; margin-top:2px;">1-3 years</span>
+                            </div>
+                            <div class="exp-option" onclick="selectExp(this)">
+                                <i class="fas fa-crown"></i>
+                                <span>Advanced</span>
+                                <span style="font-size:10px; color:#94a3b8; margin-top:2px;">3+ years</span>
+                            </div>
+                        </div>
+                        <input type="hidden" id="experience" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Skills (Select all that apply)</label>
+                        <div class="skill-tags">
+                            <span class="skill-tag" onclick="toggleSkill(this)">Python</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">JavaScript</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">Data Analysis</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">Machine Learning</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">SQL</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">React</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">UI/UX Design</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">Cloud (AWS/Azure)</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">Project Management</span>
+                            <span class="skill-tag" onclick="toggleSkill(this)">Communication</span>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-back" onclick="prevStep(1)">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Next Step <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="form-section" id="step3">
+                <h2>Your Career Goal</h2>
+                <p class="section-desc">Select the role you want to achieve</p>
+
+                <form onsubmit="return nextStep(4)">
+                    <div class="form-group">
+                        <label>Target Career Path <span class="required">*</span></label>
+                        <div class="career-cards">
+                            <div class="career-card" onclick="selectCareer(this)">
+                                <i class="fas fa-robot" style="color:#7c3aed;"></i>
+                                <div class="title">AI Engineer</div>
+                                <div class="desc">Build intelligent systems</div>
+                            </div>
+                            <div class="career-card" onclick="selectCareer(this)">
+                                <i class="fas fa-chart-line" style="color:#3b82f6;"></i>
+                                <div class="title">Data Scientist</div>
+                                <div class="desc">Analyze & predict trends</div>
+                            </div>
+                            <div class="career-card" onclick="selectCareer(this)">
+                                <i class="fas fa-code" style="color:#10b981;"></i>
+                                <div class="title">Full Stack Dev</div>
+                                <div class="desc">End-to-end development</div>
+                            </div>
+                            <div class="career-card" onclick="selectCareer(this)">
+                                <i class="fas fa-shield-alt" style="color:#f59e0b;"></i>
+                                <div class="title">Cybersecurity</div>
+                                <div class="desc">Protect digital assets</div>
+                            </div>
+                            <div class="career-card" onclick="selectCareer(this)">
+                                <i class="fas fa-paint-brush" style="color:#ec4899;"></i>
+                                <div class="title">Product Designer</div>
+                                <div class="desc">Design user experiences</div>
+                            </div>
+                            <div class="career-card" onclick="selectCareer(this)">
+                                <i class="fas fa-cloud" style="color:#06b6d4;"></i>
+                                <div class="title">Cloud Architect</div>
+                                <div class="desc">Design cloud infrastructure</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="career" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Timeline Goal</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fas fa-calendar"></i>
+                            <select>
+                                <option>3 months</option>
+                                <option selected>6 months</option>
+                                <option>1 year</option>
+                                <option>2+ years</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Additional Notes (Optional)</label>
+                        <textarea placeholder="Tell us more about your goals, challenges, or specific companies you're targeting..."></textarea>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-back" onclick="prevStep(2)">
+                            <i class="fas fa-arrow-left"></i> Back
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Generate Roadmap <i class="fas fa-magic"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+          
+            <div class="form-section" id="step4">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <h2 class="success-title">You're All Set!</h2>
+                <p class="success-text">
+                    Welcome to CareerGPT! We're analyzing your profile and building your personalized AI career roadmap. This will only take a moment.
+                </p>
+
+                <div class="loading-bar">
+                    <div class="loading-progress" id="progress"></div>
+                </div>
+
+                <div class="feature-preview">
+                    <div class="preview-item">
+                        <i class="fas fa-brain"></i>
+                        <span>Skill Gap</span>
+                    </div>
+                    <div class="preview-item">
+                        <i class="fas fa-map"></i>
+                        <span>Roadmap</span>
+                    </div>
+                    <div class="preview-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Projects</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="register()">
+                    Go to homepage <i class="fas fa-rocket"></i>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+
+        function nextStep(step) {
+        
+            if (step === 3) {
+                const exp = document.getElementById('experience').value;
+                if (!exp) {
+                    alert('Please select your experience level');
+                    return false;
+                }
+            }
+            if (step === 4) {
+                const career = document.getElementById('career').value;
+                if (!career) {
+                    alert('Please select a target career');
+                    return false;
+                }
+            }
+
+            // Hide current
+            document.getElementById('step' + currentStep).classList.remove('active');
+            
+            // Update step indicators
+            document.getElementById('step' + currentStep + '-num').classList.remove('active');
+            document.getElementById('step' + currentStep + '-num').classList.add('completed');
+            document.getElementById('step' + currentStep + '-label').classList.remove('active');
+            
+            if (currentStep < 3) {
+                document.getElementById('line' + currentStep).classList.add('completed');
+            }
+
+            // Show next
+            currentStep = step;
+            document.getElementById('step' + currentStep).classList.add('active');
+            
+            if (currentStep < 4) {
+                document.getElementById('step' + currentStep + '-num').classList.remove('inactive');
+                document.getElementById('step' + currentStep + '-num').classList.add('active');
+                document.getElementById('step' + currentStep + '-label').classList.add('active');
+            }
+
+            // If final step, start loading animation
+            if (currentStep === 4) {
+                setTimeout(() => {
+                    document.getElementById('progress').style.width = '100%';
+                }, 300);
+            }
+
+            return false; // Prevent form submission
+        }
+
+        function prevStep(step) {
+            document.getElementById('step' + currentStep).classList.remove('active');
+            
+            // Reset current step indicator
+            if (currentStep < 4) {
+                document.getElementById('step' + currentStep + '-num').classList.remove('active');
+                document.getElementById('step' + currentStep + '-num').classList.add('inactive');
+                document.getElementById('step' + currentStep + '-label').classList.remove('active');
+            }
+
+            currentStep = step;
+            document.getElementById('step' + currentStep).classList.add('active');
+            document.getElementById('step' + currentStep + '-num').classList.remove('completed');
+            document.getElementById('step' + currentStep + '-num').classList.add('active');
+            document.getElementById('step' + currentStep + '-label').classList.add('active');
+            
+            if (step < 3) {
+                document.getElementById('line' + step).classList.remove('completed');
+            }
+        }
+
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            const icon = event.target;
+            if (pwd.type === 'password') {
+                pwd.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                pwd.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function selectExp(element) {
+            document.querySelectorAll('.exp-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('experience').value = element.querySelector('span').textContent;
+        }
+
+        function toggleSkill(element) {
+            element.classList.toggle('selected');
+        }
+
+        function selectCareer(element) {
+            document.querySelectorAll('.career-card').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('career').value = element.querySelector('.title').textContent;
+        }
+
+        function goToDashboard() {
+            
+            alert('Redirecting to your personalized CareerGPT Dashboard...');
+            setTimeout(() => {
+        window.location.href = 'dashboard.html';
+    },500);
+}
+
+        function register()
+        {
+            localStorage.setItem("account","created");
+            window.location.href="index.html";
+            
+        }
+        
+    </script>
+
+</body>
+</html>
