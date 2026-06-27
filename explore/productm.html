@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Product Manager — CareerGPT</title>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #060b18;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+ 
+  nav {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0 2rem; height: 54px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(6,11,24,0.95);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .brand { font-size: 17px; font-weight: 700; color: #22d3ee; text-decoration: none; }
+  .crumb { font-size: 13px; color: #475569; }
+  .crumb span { color: #94a3b8; }
+ 
+  .page { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+ 
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    color: #22d3ee; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; margin-left:-200px;
+  }
+  .eyebrow::before { content:''; width:20px; height:1.5px; background:#22d3ee; display:block; }
+ 
+  h1 { font-size: 40px; font-weight: 800; color: #f1f5f9; margin-bottom: 0.75rem; margin-left:-200px;}
+  .desc { font-size: 15px; color: #94a3b8; margin-bottom: 1.75rem; max-width: 520px; line-height: 1.7; margin-left:-150px; }
+ 
+  .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; margin-left:-160px; }
+  .pill {
+    font-size: 13px; font-weight: 500; padding: 7px 16px;
+    border-radius: 30px; border: 1px solid;
+  }
+  .pill-sal { color: #22d3ee; border-color: rgba(34,211,238,0.3); background: rgba(6,182,212,0.08); }
+  .pill-dem { color: #fca5a5; border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.07); }
+  .pill-tim { color: #c4b5fd; border-color: rgba(167,139,250,0.3); background: rgba(124,58,237,0.07); }
+ 
+  .cta-btn {
+    display: inline-block; padding: 12px 32px;
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    color: #fff; font-size: 15px; font-weight: 600;
+    border-radius: 10px; text-decoration: none; border: none; cursor: pointer;
+    transition: opacity 0.2s;
+    margin-left:-160px;
+    margin-top:-160px;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+ 
+  hr { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 2.5rem 0; }
+ 
+  .sec-title { font-size: 18px; font-weight: 700; color: #f1f5f9; margin-bottom: 1.25rem; }
+ 
+  /* PHASES */
+  .phases { display: flex; flex-direction: column; gap: 10px; }
+  .phase {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 16px 20px;
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .phase-num {
+    font-size: 11px; font-weight: 700; padding: 3px 10px;
+    border-radius: 20px; white-space: nowrap; margin-top: 2px;
+  }
+  .p1 { background: rgba(124,58,237,0.15); color: #c4b5fd; }
+  .p2 { background: rgba(6,182,212,0.12); color: #67e8f9; }
+  .p3 { background: rgba(16,185,129,0.12); color: #6ee7b7; }
+  .p4 { background: rgba(245,158,11,0.12); color: #fde68a; }
+  .phase-name { font-size: 14px; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
+  .phase-time { font-size: 12px; color: #475569; margin-bottom: 8px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px; padding: 3px 10px; border-radius: 20px; border: 1px solid;
+  }
+  .t1 { color: #c4b5fd; border-color: rgba(167,139,250,0.25); background: rgba(124,58,237,0.08); }
+  .t2 { color: #67e8f9; border-color: rgba(103,232,249,0.25); background: rgba(6,182,212,0.07); }
+  .t3 { color: #6ee7b7; border-color: rgba(110,231,183,0.25); background: rgba(16,185,129,0.07); }
+  .t4 { color: #fde68a; border-color: rgba(253,230,138,0.25); background: rgba(245,158,11,0.07); }
+ 
+  /* RESOURCES */
+  .res-list { display: flex; flex-direction: column; gap: 8px; }
+  .res {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px; padding: 13px 18px;
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; transition: border-color 0.2s;
+  }
+  .res:hover { border-color: rgba(99,102,241,0.35); }
+  .res-icon { font-size: 20px; flex-shrink: 0; }
+  .res-name { font-size: 14px; font-weight: 600; color: #e2e8f0; }
+  .res-sub { font-size: 12px; color: #475569; }
+  .res-badge {
+    margin-left: auto; font-size: 11px; font-weight: 600;
+    padding: 2px 10px; border-radius: 10px; flex-shrink: 0;
+  }
+  .free { background: rgba(16,185,129,0.12); color: #6ee7b7; }
+  .paid { background: rgba(245,158,11,0.1); color: #fde68a; }
+ 
+  /* PROJECTS */
+  .proj-list { display: flex; flex-direction: column; gap: 8px; }
+  .proj {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px; padding: 13px 18px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .proj-n { font-size: 18px; font-weight: 800; color: rgba(167,139,250,0.2); min-width: 28px; }
+  .proj-name { font-size: 14px; font-weight: 600; color: #e2e8f0; }
+  .proj-stack { font-size: 12px; color: #475569; }
+  .diff { margin-left: auto; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 10px; }
+  .de { background: rgba(16,185,129,0.12); color: #6ee7b7; }
+  .dm { background: rgba(245,158,11,0.1); color: #fde68a; }
+  .dh { background: rgba(239,68,68,0.1); color: #fca5a5; }
+ 
+  /* JOBS */
+  .jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+  .job {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 16px;
+  }
+  .job-role { font-size: 13px; font-weight: 600; color: #e2e8f0; margin-bottom: 6px; }
+  .job-sal { font-size: 17px; font-weight: 700; color: #22d3ee; margin-bottom: 3px; }
+  .job-exp { font-size: 12px; color: #475569; }
+  #d1
+  {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    gap:50px;
+    margin-right:50px;
+    color:#f1f5f9;
+  }
+  #d1 a{
+     color:#f1f5f9;
+     text-decoration: none;
+  }
+   #d1 .c4:hover{
+    color:#06b6d4;
+      cursor:pointer;
+      text-decoration: none;
+  }
+  #d1 .c1:hover{
+    color:#06b6d4;
+      cursor:pointer;
+      text-decoration: none;
+  }
+   #d1 .c2:hover{
+    color:#06b6d4;
+      cursor:pointer;
+  }
+   #d1 .c3:hover{
+    color:#06b6d4;
+      cursor:pointer;
+  }
+       html {
+  scroll-behavior: smooth;
+}
+.bu1 button
+  {
+   background:
+    linear-gradient(
+    90deg,
+    #00bfff,
+    #5b8cff
+    );
+    border-radius:10px;
+    color:white;
+    font-weight:600;
+    font-size:1rem;
+    transition:0.3s;
+    font-size:15px;
+    width:80px;
+    height:35px;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+    
+ 
+<nav>
+    <div class="bu1"><a href="../index.html#careerpath"><button onclick="window.location.href='#careerpath'";><-Back</button></a></div>
+  <a class="brand" href="#">CareerGPT</a>
+  <div class="crumb">Roadmaps / <span>Product Manager</span></div>
+  <div style="width:100vw; height:10vh;" id="d1">
+    <a class="c4" href="#">Overview</a>
+    <a class="c1" href="#c11">Learn</a>
+    <a class="c2" href="#c22">Resources</a>
+    <a class="c3" href="#c33"> Project</a>
+  </div>
+</nav>
+ 
+<div class="page">
+  <div class="eyebrow">Explore Career</div>
+  <h1>🚀 Product Manager</h1>
+  <p class="desc">Lead the vision, strategy, and execution of products by balancing user needs, business goals, and technical feasibility.</p>
+  <div class="pills">
+    <div>
+    <span class="pill pill-sal">💰 ₹12L – ₹45L / year</span>
+    <span class="pill pill-dem">🔥 High Demand</span>
+    <span class="pill pill-tim">⏱ 6–12 Months</span></div>
+</div>
+    <div><img src="../images/prod.png" style="width:490px;  border-radius:50%; height:400px; margin-top:-210px; margin-left:550px;"></div>
+  <div  style="margin-top:-130px;"><a href="../roadmap.html" class="cta-btn"">Start Roadmap →</a></div>
+  <div id="c11">
+  <hr/>
+  <hr>
+ 
+  
+  <div class="sec-title">What You'll Learn</div>
+  <div class="phases">
+    <div class="phase">
+      <span class="phase-num p1">Phase 1</span>
+      <div class="phase-info">
+        <div class="phase-name">Product Foundations & Strategy</div>
+        <div class="phase-time">0 – 4 weeks</div>
+        <div class="tags">
+          <span class="tag t1">Market Analysis</span><span class="tag t1">User Discovery</span>
+          <span class="tag t1">Product Vision</span><span class="tag t1">Agile & Scrum</span>
+          <span class="tag t1">Jira & Confluence</span>
+        </div>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="phase-num p2">Phase 2</span>
+      <div class="phase-info">
+        <div class="phase-name">Design & Technical Basics</div>
+        <div class="phase-time">4 – 8 weeks</div>
+        <div class="tags">
+          <span class="tag t2">UI/UX Principles</span><span class="tag t2">Wireframing</span>
+          <span class="tag t2">Tech Stack Overview</span><span class="tag t2">System Architecture</span>
+          <span class="tag t2">API Fundamentals</span>
+        </div>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="phase-num p3">Phase 3</span>
+      <div class="phase-info">
+        <div class="phase-name">Data & Growth</div>
+        <div class="phase-time">8 – 14 weeks</div>
+        <div class="tags">
+          <span class="tag t3">Product Metrics (KPIs)</span><span class="tag t3">A/B Testing</span>
+          <span class="tag t3">User Analytics (Mixpanel)</span><span class="tag t3">SQL for PMs</span>
+          <span class="tag t3">Growth Hacking</span>
+        </div>
+      </div>
+    </div>
+    <div class="phase">
+      <span class="phase-num p4">Phase 4</span>
+      <div class="phase-info">
+        <div class="phase-name">Leadership & Stakeholder Mgmt</div>
+        <div class="phase-time">14 – 20 weeks</div>
+        <div class="tags">
+          <span class="tag t4">Prioritization Frameworks</span><span class="tag t4">Product Roadmap</span>
+          <span class="tag t4">Stakeholder Communication</span><span class="tag t4">GTM Strategy</span>
+          <span class="tag t4">Soft Skills</span>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+  <hr/>
+ 
+  <div id="c22">
+  <div class="sec-title">Resources</div>
+  <div class="res-list">
+    <a class="res" href="https://www.producthunt.com" target="_blank">
+      <span class="res-icon">🎯</span>
+      <div><div class="res-name">Product Hunt</div><div class="res-sub">Discover latest products & trends</div></div>
+      <span class="res-badge free">Free</span>
+    </a>
+    <a class="res" href="https://www.lennysnewsletter.com" target="_blank">
+      <span class="res-icon">📧</span>
+      <div><div class="res-name">Lenny's Newsletter</div><div class="res-sub">Deep dives on product & growth</div></div>
+      <span class="res-badge free">Free</span>
+    </a>
+    <a class="res" href="https://www.mindtheproduct.com" target="_blank">
+      <span class="res-icon">🧠</span>
+      <div><div class="res-name">Mind the Product</div><div class="res-sub">Product management community</div></div>
+      <span class="res-badge free">Free</span>
+    </a>
+    <a class="res" href="https://www.reforge.com" target="_blank">
+      <span class="res-icon">⚡</span>
+      <div><div class="res-name">Reforge</div><div class="res-sub">Advanced product & growth programs</div></div>
+      <span class="res-badge paid">Paid</span>
+    </a>
+    <a class="res" href="https://www.coursera.org" target="_blank">
+      <span class="res-icon">📜</span>
+      <div><div class="res-name">Product Management Certs</div><div class="res-sub">University-backed certifications</div></div>
+      <span class="res-badge paid">Paid</span>
+    </a>
+  </div>
+ 
+  <hr/>
+  </div>
+ 
+ <div id="c33">
+  <div class="sec-title">Projects to Build</div>
+  <div class="proj-list">
+    <div class="proj"><div class="proj-n">01</div><div><div class="proj-name">Product Teardown</div><div class="proj-stack">Analysis · Strategy · Presentation</div></div><span class="diff de">Beginner</span></div>
+    <div class="proj"><div class="proj-n">02</div><div><div class="proj-name">PRD for a New Feature</div><div class="proj-stack">Documentation · Wireframing · Logic</div></div><span class="diff de">Beginner</span></div>
+    <div class="proj"><div class="proj-n">03</div><div><div class="proj-name">User Research & MVP Plan</div><div class="proj-stack">Interviews · Roadmap · Prioritization</div></div><span class="diff dm">Intermediate</span></div>
+    <div class="proj"><div class="proj-n">04</div><div><div class="proj-name">Growth Experiment Design</div><div class="proj-stack">A/B Testing · Metrics · Analytics</div></div><span class="diff dm">Intermediate</span></div>
+    <div class="proj"><div class="proj-n">05</div><div><div class="proj-name">End-to-End Product Launch</div><div class="proj-stack">GTM Strategy · Execution · Post-Launch</div></div><span class="diff dh">Advanced</span></div>
+  </div>
+ 
+  <hr/>
+ </div>
+  <!-- JOBS -->
+  <div class="sec-title">Job Roles in India</div>
+  <div class="jobs-grid">
+    <div class="job"><div class="job-role">Associate PM</div><div class="job-sal">₹12L – ₹18L</div><div class="job-exp">0–2 yrs</div></div>
+    <div class="job"><div class="job-role">Product Manager</div><div class="job-sal">₹18L – ₹30L</div><div class="job-exp">2–5 yrs</div></div>
+    <div class="job"><div class="job-role">Senior PM</div><div class="job-sal">₹30L – ₹60L</div><div class="job-exp">5–8 yrs</div></div>
+    <div class="job"><div class="job-role">Director of Product</div><div class="job-sal">₹60L+</div><div class="job-exp">10+ yrs</div></div>
+  </div>
+ 
+</div>
+</body>
+</html>
+

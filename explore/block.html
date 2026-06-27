@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blockchain Developer — CareerGPT</title>
+ 
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #060b18;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+  }
+ 
+  nav {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0 2rem; height: 54px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(6,11,24,0.95);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .brand { font-size: 17px; font-weight: 700; color: #22d3ee; text-decoration: none; }
+  .crumb { font-size: 13px; color: #475569; }
+  .crumb span { color: #94a3b8; }
+ 
+  .page { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+ 
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    color: #22d3ee; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; margin-left:-200px;
+  }
+  .eyebrow::before { content:''; width:20px; height:1.5px; background:#22d3ee; display:block; }
+ 
+  h1 { font-size: 40px; font-weight: 800; color: #f1f5f9; margin-bottom: 0.75rem; margin-left:-200px;}
+  .desc { font-size: 15px; color: #94a3b8; margin-bottom: 1.75rem; max-width: 520px; line-height: 1.7; margin-left:-150px; }
+ 
+  .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 2rem; margin-left:-160px; }
+  .pill {
+    font-size: 13px; font-weight: 500; padding: 7px 16px;
+    border-radius: 30px; border: 1px solid;
+  }
+  .pill-sal { color: #22d3ee; border-color: rgba(34,211,238,0.3); background: rgba(6,182,212,0.08); }
+  .pill-dem { color: #fca5a5; border-color: rgba(239,68,68,0.25); background: rgba(239,68,68,0.07); }
+  .pill-tim { color: #c4b5fd; border-color: rgba(167,139,250,0.3); background: rgba(124,58,237,0.07); }
+ 
+  .cta-btn {
+    display: inline-block; padding: 12px 32px;
+    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    color: #fff; font-size: 15px; font-weight: 600;
+    border-radius: 10px; text-decoration: none; border: none; cursor: pointer;
+    transition: opacity 0.2s;
+    margin-left:-160px;
+    margin-top:-160px;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+ 
+  hr { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 2.5rem 0; }
+ 
+  .sec-title { font-size: 18px; font-weight: 700; color: #f1f5f9; margin-bottom: 1.25rem; }
+ 
+  /* PHASES */
+  .phases { display: flex; flex-direction: column; gap: 10px; }
+  .phase {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 16px 20px;
+    display: flex; align-items: flex-start; gap: 16px;
+  }
+  .phase-num {
+    font-size: 11px; font-weight: 700; padding: 3px 10px;
+    border-radius: 20px; white-space: nowrap; margin-top: 2px;
+  }
+  .p1 { background: rgba(124,58,237,0.15); color: #c4b5fd; }
+  .p2 { background: rgba(6,182,212,0.12); color: #67e8f9; }
+  .p3 { background: rgba(16,185,129,0.12); color: #6ee7b7; }
+  .p4 { background: rgba(245,158,11,0.12); color: #fde68a; }
+  .phase-name { font-size: 14px; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
+  .phase-time { font-size: 12px; color: #475569; margin-bottom: 8px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-size: 12px; padding: 3px 10px; border-radius: 20px; border: 1px solid;
+  }
+  .t1 { color: #c4b5fd; border-color: rgba(167,139,250,0.25); background: rgba(124,58,237,0.08); }
+  .t2 { color: #67e8f9; border-color: rgba(103,232,249,0.25); background: rgba(6,182,212,0.07); }
+  .t3 { color: #6ee7b7; border-color: rgba(110,231,183,0.25); background: rgba(16,185,129,0.07); }
+  .t4 { color: #fde68a; border-color: rgba(253,230,138,0.25); background: rgba(245,158,11,0.07); }
+ 
+  /* RESOURCES */
+  .res-list { display: flex; flex-direction: column; gap: 8px; }
+  .res {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px; padding: 13px 18px;
+    display: flex; align-items: center; gap: 14px;
+    text-decoration: none; transition: border-color 0.2s;
+  }
+  .res:hover { border-color: rgba(99,102,241,0.35); }
+  .res-icon { font-size: 20px; flex-shrink: 0; }
+  .res-name { font-size: 14px; font-weight: 600; color: #e2e8f0; }
+  .res-sub { font-size: 12px; color: #475569; }
+  .res-badge {
+    margin-left: auto; font-size: 11px; font-weight: 600;
+    padding: 2px 10px; border-radius: 10px; flex-shrink: 0;
+  }
+  .free { background: rgba(16,185,129,0.12); color: #6ee7b7; }
+  .paid { background: rgba(245,158,11,0.1); color: #fde68a; }
+ 
+  /* PROJECTS */
+  .proj-list { display: flex; flex-direction: column; gap: 8px; }
+  .proj {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px; padding: 13px 18px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .proj-n { font-size: 18px; font-weight: 800; color: rgba(167,139,250,0.2); min-width: 28px; }
+  .proj-name { font-size: 14px; font-weight: 600; color: #e2e8f0; }
+  .proj-stack { font-size: 12px; color: #475569; }
+  .diff { margin-left: auto; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 10px; }
+  .de { background: rgba(16,185,129,0.12); color: #6ee7b7; }
+  .dm { background: rgba(245,158,11,0.1); color: #fde68a; }
+  .dh { background: rgba(239,68,68,0.1); color: #fca5a5; }
+ 
+  /* JOBS */
+  .jobs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+  .job {
+    background: #0d1425; border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px; padding: 16px;
+  }
+  .job-role { font-size: 13px; font-weight: 600; color: #e2e8f0; margin-bottom: 6px; }
+  .job-sal { font-size: 17px; font-weight: 700; color: #22d3ee; margin-bottom: 3px; }
+  .job-exp { font-size: 12px; color: #475569; }
+ 
+  #d1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-right: 50px;
+    color: #f1f5f9;
+  }
+  #d1 a {
+    color: #f1f5f9;
+    text-decoration: none;
+  }
+  #d1 a:hover {
+    color: #06b6d4;
+    cursor: pointer;
+  }
+ 
+  html { scroll-behavior: smooth; }
+  .bu1 button
+  {
+   background:
+    linear-gradient(
+    90deg,
+    #00bfff,
+    #5b8cff
+    );
+    border-radius:10px;
+    color:white;
+    font-weight:600;
+    font-size:1rem;
+    transition:0.3s;
+    font-size:15px;
+    width:80px;
+    height:35px;
+    cursor:pointer;
+  }
+</style>
+</head>
+<body>
+ 
+<nav>
+    <div class="bu1"><a href="../index.html#careerpath"><button onclick="window.location.href='#careerpath'";><-Back</button></a></div>
+  <a class="brand" href="#">CareerGPT</a>
+  <div class="crumb">Roadmaps / <span>Blockchain Developer</span></div>
+  <div style="width:100vw; height:10vh;" id="d1">
+    <a href="#">Overview</a>
+    <a href="#c11">Learn</a>
+    <a href="#c22">Resources</a>
+    <a href="#c33">Projects</a>
+  </div>
+</nav>
+ 
+<div class="page">
+  <div class="eyebrow">Explore Career</div>
+  <h1>⛓️ Blockchain Developer</h1>
+  <p class="desc">Build decentralized applications, smart contracts, and Web3 solutions on distributed ledger technology.</p>
+  <div class="pills">
+    <div>
+      <span class="pill pill-sal">💰 ₹8L – ₹35L / year</span>
+      <span class="pill pill-dem">🔥 High Demand</span>
+      <span class="pill pill-tim">⏱ 5–7 Months</span>
+    </div>
+  </div>
+ 
+  <div>
+    <img src="../images/block1.png" style="width:490px; border-radius:50%; height:400px; margin-top:-210px; margin-left:550px;">
+  </div>
+ 
+  <div style="margin-top:-130px;">
+    <a href="../roadmap.html" class="cta-btn">Start Roadmap →</a>
+  </div>
+ 
+  <div id="c11">
+    <hr/>
+    <div class="sec-title">What You'll Learn</div>
+    <div class="phases">
+ 
+      <div class="phase">
+        <span class="phase-num p1">Phase 1</span>
+        <div class="phase-info">
+          <div class="phase-name">Blockchain Fundamentals</div>
+          <div class="phase-time">0 – 4 weeks</div>
+          <div class="tags">
+            <span class="tag t1">How Blockchain Works</span>
+            <span class="tag t1">Cryptography Basics</span>
+            <span class="tag t1">Hash Functions</span>
+            <span class="tag t1">Consensus Mechanisms</span>
+            <span class="tag t1">Bitcoin & Ethereum Concepts</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="phase">
+        <span class="phase-num p2">Phase 2</span>
+        <div class="phase-info">
+          <div class="phase-name">Smart Contracts & Solidity</div>
+          <div class="phase-time">4 – 9 weeks</div>
+          <div class="tags">
+            <span class="tag t2">Solidity Language</span>
+            <span class="tag t2">ERC-20 / ERC-721 Tokens</span>
+            <span class="tag t2">Hardhat / Truffle</span>
+            <span class="tag t2">Remix IDE</span>
+            <span class="tag t2">Gas Optimization</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="phase">
+        <span class="phase-num p3">Phase 3</span>
+        <div class="phase-info">
+          <div class="phase-name">Web3 & DApp Development</div>
+          <div class="phase-time">9 – 15 weeks</div>
+          <div class="tags">
+            <span class="tag t3">Web3.js / Ethers.js</span>
+            <span class="tag t3">MetaMask Integration</span>
+            <span class="tag t3">IPFS & Decentralized Storage</span>
+            <span class="tag t3">React + Web3 Frontend</span>
+            <span class="tag t3">The Graph (Indexing)</span>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="phase">
+        <span class="phase-num p4">Phase 4</span>
+        <div class="phase-info">
+          <div class="phase-name">Advanced Blockchain & Security</div>
+          <div class="phase-time">15 – 22 weeks</div>
+          <div class="tags">
+            <span class="tag t4">DeFi Protocols</span>
+            <span class="tag t4">Smart Contract Auditing</span>
+            <span class="tag t4">Layer 2 Solutions</span>
+            <span class="tag t4">Chainlink Oracles</span>
+            <span class="tag t4">Cross-Chain Bridges</span>
+          </div>
+        </div>
+      </div>
+ 
+    </div>
+  </div>
+ 
+  <hr/>
+ 
+  <div id="c22">
+    <div class="sec-title">Resources</div>
+    <div class="res-list">
+      <a class="res" href="https://docs.soliditylang.org" target="_blank">
+        <span class="res-icon">📜</span>
+        <div><div class="res-name">Solidity Docs</div><div class="res-sub">Official language reference for smart contracts</div></div>
+        <span class="res-badge free">Free</span>
+      </a>
+      <a class="res" href="https://ethereum.org/en/developers/" target="_blank">
+        <span class="res-icon">💎</span>
+        <div><div class="res-name">Ethereum Dev Docs</div><div class="res-sub">Guides, tutorials & ecosystem overview</div></div>
+        <span class="res-badge free">Free</span>
+      </a>
+      <a class="res" href="https://cryptozombies.io" target="_blank">
+        <span class="res-icon">🧟</span>
+        <div><div class="res-name">CryptoZombies</div><div class="res-sub">Learn Solidity by building a zombie game</div></div>
+        <span class="res-badge free">Free</span>
+      </a>
+      <a class="res" href="https://docs.openzeppelin.com" target="_blank">
+        <span class="res-icon">🛡️</span>
+        <div><div class="res-name">OpenZeppelin Docs</div><div class="res-sub">Secure smart contract libraries & patterns</div></div>
+        <span class="res-badge free">Free</span>
+      </a>
+      <a class="res" href="https://www.udemy.com" target="_blank">
+        <span class="res-icon">🎓</span>
+        <div><div class="res-name">Udemy Courses</div><div class="res-sub">Ethereum, Solidity & Web3 full courses</div></div>
+        <span class="res-badge paid">Paid</span>
+      </a>
+    </div>
+    <hr/>
+  </div>
+ 
+  <div id="c33">
+    <div class="sec-title">Projects to Build</div>
+    <div class="proj-list">
+      <div class="proj"><div class="proj-n">01</div><div><div class="proj-name">ERC-20 Token Launch</div><div class="proj-stack">Solidity · Hardhat · MetaMask</div></div><span class="diff de">Beginner</span></div>
+      <div class="proj"><div class="proj-n">02</div><div><div class="proj-name">NFT Minting DApp</div><div class="proj-stack">ERC-721 · IPFS · Ethers.js</div></div><span class="diff de">Beginner</span></div>
+      <div class="proj"><div class="proj-n">03</div><div><div class="proj-name">Decentralized Voting System</div><div class="proj-stack">Solidity · React · Web3.js</div></div><span class="diff dm">Intermediate</span></div>
+      <div class="proj"><div class="proj-n">04</div><div><div class="proj-name">DeFi Token Swap</div><div class="proj-stack">Uniswap · Hardhat · Ethers.js</div></div><span class="diff dm">Intermediate</span></div>
+      <div class="proj"><div class="proj-n">05</div><div><div class="proj-name">Smart Contract Audit Report</div><div class="proj-stack">Slither · MythX · OpenZeppelin</div></div><span class="diff dh">Advanced</span></div>
+    </div>
+    <hr/>
+  </div>
+ 
+  <!-- JOBS -->
+  <div class="sec-title">Job Roles in India</div>
+  <div class="jobs-grid">
+    <div class="job"><div class="job-role">Junior Blockchain Dev</div><div class="job-sal">₹8L – ₹12L</div><div class="job-exp">0–2 yrs</div></div>
+    <div class="job"><div class="job-role">Solidity Developer</div><div class="job-sal">₹12L – ₹22L</div><div class="job-exp">2–4 yrs</div></div>
+    <div class="job"><div class="job-role">Web3 Engineer</div><div class="job-sal">₹15L – ₹30L</div><div class="job-exp">3+ yrs</div></div>
+    <div class="job"><div class="job-role">Smart Contract Auditor</div><div class="job-sal">₹18L – ₹35L</div><div class="job-exp">4+ yrs</div></div>
+  </div>
+ 
+</div>
+</body>
+</html>
+ 
